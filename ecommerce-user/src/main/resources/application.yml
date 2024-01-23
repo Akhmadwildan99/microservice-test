@@ -1,0 +1,22 @@
+server:
+  port: 8080
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    enabled: true
+    fetch-registry: true
+spring:
+  application:
+    name: ecommerce-user
+  h2:
+    console.enabled: true
+  datasource:
+    url: jdbc:h2:mem:userdb
+    driverClassName: org.h2.Driver
+    username: user
+    password: user
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
