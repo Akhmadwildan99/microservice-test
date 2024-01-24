@@ -29,7 +29,7 @@ public class OrderService {
         ReturnMessage ret= new ReturnMessage();
         ret.setId(-1);
         Long qtyProduct = productClient.getQtyProduct(orderDao.getProductId());
-        if(qtyProduct.compareTo(0L) == 0 || qtyProduct.compareTo(orderDao.getQty()) < 0){
+        if(qtyProduct.equals(0L) || qtyProduct.compareTo(orderDao.getQty()) < 0){
             ret.setMessage("Qty Product is empty");
             ret.setId(-1);
             return ret;
