@@ -1,16 +1,15 @@
-package com.user.commerce;
+package com.product.commerce;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
-
-@EnableEurekaClient
 @SpringBootApplication
-public class EcommerceUserApplication {
+@EnableEurekaClient
+public class EcommerceProductApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EcommerceUserApplication.class, args);
+		SpringApplication.run(EcommerceProductApplication.class, args);
 	}
 
 }

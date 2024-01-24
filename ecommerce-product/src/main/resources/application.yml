@@ -1,16 +1,16 @@
 server:
-  port: 8082
+  port: 8083
 
 spring:
   application:
-    name: ECOMMCERCE-USER
+    name: ECOMMCERCE-PRODUCT
   h2:
     console.enabled: true
   datasource:
-    url: jdbc:h2:mem:userdb
+    url: jdbc:h2:mem:productdb
     driverClassName: org.h2.Driver
-    username: user
-    password: user
+    username: product
+    password: product
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
@@ -23,3 +23,4 @@ eureka:
     register-with-eureka: true
     enabled: true
     fetch-registry: true
+

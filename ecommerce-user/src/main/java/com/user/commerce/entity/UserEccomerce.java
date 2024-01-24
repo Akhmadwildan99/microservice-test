@@ -1,16 +1,21 @@
 package com.user.commerce.entity;
 
 import com.user.commerce.entity.enumeration.UserType;
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+//import jakarta.persistence.*;
+//import jakarta.persistence.Entity;
+import lombok.*;
 
+import javax.persistence.*;
 import java.io.Serializable;
+
+
+//import java.io.Serializable;
 
 @Table(name = "user_ecomerce")
 @Entity
 @Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserEccomerce implements Serializable {
