@@ -79,8 +79,7 @@ public class ProductService {
 
     public Long getQuantityProduct(Long id) {
         if(productRepository.existsById(id)) {
-
-            return   quantityProduct(id);
+            return  quantityProduct(id);
         }
 
         return 0L;
