@@ -1,5 +1,6 @@
 package com.user.commerce.controller;
 
+import com.user.commerce.dao.ReturnMessage;
 import com.user.commerce.entity.UserEccomerce;
 import com.user.commerce.entity.enumeration.UserType;
 import com.user.commerce.service.UserEccomerceService;
@@ -7,11 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Optional;
 
 @RestController
@@ -38,5 +38,25 @@ public class UserEccomerceResource {
         }
 
         return  ResponseEntity.ok().body(0L);
+    }
+
+    @PostMapping("/user-eccommerces")
+    public ResponseEntity<ReturnMessage> addUser(@RequestBody UserEccomerce userEccomerce) throws URISyntaxException {
+        log.info("[REST] add user, {}", userEccomerce);
+        ReturnMessage ret = new ReturnMessage();
+        ret.setId(-1);
+
+        if(userEccomerce.getId() != null) {
+            ret.setMessage("id must null");
+            return ResponseEntity.badRequest().body(ret);
+        }
+
+        ret = userEccomerceService.addUser(userEccomerce);
+
+        if(ret.getId() == -1) {
+            return ResponseEntity.badRequest().body(ret);
+        }
+
+        return  ResponseEntity.created(new URI("/api/v1/user-eccommerces")).body(ret);
     }
 }

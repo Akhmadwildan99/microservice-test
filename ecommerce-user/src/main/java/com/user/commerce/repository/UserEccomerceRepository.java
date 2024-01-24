@@ -13,4 +13,6 @@ public interface UserEccomerceRepository extends JpaRepository<UserEccomerce, Lo
     Optional<UserEccomerce> findUserEccomerceById(Long id);
 
     Optional<UserEccomerce> findUserEccomerceByIdAndUserType(Long id, UserType userType);
+
+    List<UserEccomerce> findByUsername(String username);
 }
