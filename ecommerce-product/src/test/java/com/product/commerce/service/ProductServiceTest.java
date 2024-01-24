@@ -60,6 +60,10 @@ public class ProductServiceTest {
 
         ReturnMessage returnMessage = productService.saveProductDao(productDao);
 
+        verify(productRepository, times(1)).countAllByName(anyString());
+        verify(productRepository, times(1)).save(any());
+        verify(inventoryRepository, times(1)).save(any());
+
         assertThat(returnMessage.getId()).isEqualTo(1);
         assertThat(returnMessage.getMessage()).contains("successfully store product with quantity");
     }
@@ -70,6 +74,8 @@ public class ProductServiceTest {
         when(productRepository.countAllByName(anyString())).thenReturn(1L);
 
         ReturnMessage returnMessage = productService.saveProductDao(productDao);
+
+        verify(productRepository, times(1)).countAllByName(anyString());
 
         assertThat(returnMessage.getId()).isEqualTo(-1);
         assertThat(returnMessage.getMessage()).contains("product with name "+ productDao.getName() + " is exists");
@@ -99,6 +105,11 @@ public class ProductServiceTest {
 
 
         ReturnMessage returnMessage = productService.saveProductInventory(inventory);
+
+        verify(productRepository, times(1)).existsById(anyLong());
+        verify(inventoryRepository, times(1)).save(any());
+        verify(inventoryRepository, times(1)).getInventoriesByProductIdAndInventoryType(anyLong(), eq(InventoryType.INVENTORY));
+        verify(inventoryRepository, times(1)).getInventoriesByProductIdAndInventoryType(anyLong(), eq(InventoryType.ORDER));
 
         assertThat(returnMessage.getId()).isEqualTo(1);
 
