@@ -19,7 +19,7 @@ public class Inventory implements Serializable {
     private Long id;
 
     @Column(name = "quantity")
-    private Long quantiy;
+    private Long quantity;
 
     @Column(name = "inventory_type")
     @Enumerated(EnumType.STRING)

@@ -6,8 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import javax.ws.rs.QueryParam;
+import java.util.List;
+
 @Repository
 public interface InventoryRepository extends JpaRepository<Inventory, Long> {
-    @Query("select coalesce( sum(inventory.quantiy) over (partition by inventory.product.id, inventory.inventoryType), 0) from Inventory inventory where inventory.product.id = :productId and inventory.inventoryType = :inventoryType ")
-    Long countQuantityProductByInventoryType(Long productId, InventoryType inventoryType);
+//    @QueryParam("SELECT COALESCE(SUM(i.quantity), 0) FROM Inventory i WHERE i.product.id = :productId AND i.inventoryType = :inventoryType")
+//    Long countQuantityProductByInventoryType(Long productId, InventoryType inventoryType);
+
+    List<Inventory> getInventoriesByProductIdAndInventoryType(Long productId, InventoryType inventoryType);
 }

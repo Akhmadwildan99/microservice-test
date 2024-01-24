@@ -25,5 +25,4 @@ public class Product implements Serializable {
 
     @Column(name = "price")
     private BigDecimal price;
-
 }
